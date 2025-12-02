@@ -7,9 +7,10 @@ import secrets
 
 class Settings(BaseSettings):
     # Application
-    APP_NAME: str = "Texas PIA Request Automation System"
+    APP_NAME: str = "Tronas PIA Platform"
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = False
+    ENVIRONMENT: str = "development"
     API_V1_PREFIX: str = "/api/v1"
 
     # Database - MUST be set via environment variable in production

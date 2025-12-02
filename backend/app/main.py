@@ -70,13 +70,14 @@ async def lifespan(app: FastAPI):
     """Application lifespan manager."""
     # Startup
     logger.info(f"Starting {settings.APP_NAME} v{settings.APP_VERSION}")
+    logger.info(f"Environment: {settings.ENVIRONMENT if hasattr(settings, 'ENVIRONMENT') else 'unknown'}")
 
-    # Initialize database tables
+    # Initialize database tables (non-blocking)
     try:
         await init_db()
-        logger.info("Database initialized successfully")
     except Exception as e:
-        logger.error(f"Database initialization failed: {e}")
+        logger.warning(f"Database initialization skipped: {e}")
+        # Don't fail startup - app can still serve health checks
 
     yield
 
