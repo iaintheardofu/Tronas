@@ -24,19 +24,30 @@ class WorkflowStatus(str, enum.Enum):
     SKIPPED = "skipped"
 
 
+# Alias for backwards compatibility
+WorkflowTaskStatus = WorkflowStatus
+
+
 class TaskType(str, enum.Enum):
     DOCUMENT_RETRIEVAL = "document_retrieval"
     EMAIL_RETRIEVAL = "email_retrieval"
     TEXT_EXTRACTION = "text_extraction"
     AI_CLASSIFICATION = "ai_classification"
+    CLASSIFICATION = "classification"  # Alias for AI_CLASSIFICATION
     DEDUPLICATION = "deduplication"
     DEPARTMENT_REVIEW = "department_review"
     LEADERSHIP_APPROVAL = "leadership_approval"
     REDACTION_PREP = "redaction_prep"
+    REDACTION_DETECTION = "redaction_detection"
+    REDACTION_APPLICATION = "redaction_application"
     AG_SUBMISSION = "ag_submission"
     FINAL_REVIEW = "final_review"
     RESPONSE_GENERATION = "response_generation"
     NOTIFICATION = "notification"
+
+
+# Alias for backwards compatibility
+WorkflowTaskType = TaskType
 
 
 class WorkflowTask(Base):
