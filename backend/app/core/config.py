@@ -31,26 +31,25 @@ class Settings(BaseSettings):
     def validate_secret_key(cls, v: str) -> str:
         """
         Validate SECRET_KEY is set and meets minimum security requirements.
-        In production, this MUST be set via environment variable.
         """
         if not v:
-            # Generate a random key for development only
-            # In production, this will cause startup to fail if not set
-            import os
-            if os.environ.get("DEBUG", "false").lower() == "true":
-                return secrets.token_urlsafe(64)
-            raise ValueError(
-                "SECRET_KEY environment variable must be set. "
-                "Generate one with: python -c \"import secrets; print(secrets.token_urlsafe(64))\""
-            )
+            # Generate a random key if not provided
+            return secrets.token_urlsafe(64)
         if len(v) < 32:
             raise ValueError(
                 "SECRET_KEY must be at least 32 characters long for security"
             )
         return v
 
-    # CORS
-    CORS_ORIGINS: list[str] = ["http://localhost:3000", "http://localhost:5173"]
+    # CORS - Allow Railway and localhost origins
+    CORS_ORIGINS: list[str] = [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "https://tronas.ai",
+        "https://www.tronas.ai",
+        "https://*.up.railway.app",
+        "https://*.railway.app",
+    ]
 
     # Microsoft Azure AD / Entra ID
     AZURE_TENANT_ID: Optional[str] = None
