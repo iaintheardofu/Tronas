@@ -45,8 +45,8 @@ class AuditLog(Base):
     user_agent: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
     request_id: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
 
-    # Additional metadata
-    metadata: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+    # Additional metadata (renamed from 'metadata' which is reserved in SQLAlchemy)
+    extra_data: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
 
     # Timestamp
     created_at: Mapped[datetime] = mapped_column(

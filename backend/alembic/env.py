@@ -13,13 +13,13 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from alembic import context
 
 # Import all models to ensure they are registered with Base.metadata
-from app.models.base import Base
+from app.core.database import Base
 from app.models.user import User
-from app.models.request import PIARequest
+from app.models.pia_request import PIARequest
 from app.models.document import Document
-from app.models.workflow import WorkflowTask, WorkflowStep
-from app.models.email import Email, EmailThread
-from app.models.audit import AuditLog
+from app.models.workflow import WorkflowTask
+from app.models.email_record import EmailRecord, EmailThread
+from app.models.audit_log import AuditLog
 
 # this is the Alembic Config object
 config = context.config
