@@ -31,9 +31,23 @@ def get_engine() -> AsyncEngine:
     """Get or create the database engine."""
     global _engine
     if _engine is None:
-        logger.info(f"Creating database engine for: {settings.DATABASE_URL[:50]}...")
+        import os
+        # Try environment variable directly first
+        db_url = os.environ.get("DATABASE_URL") or settings.DATABASE_URL
+
+        if not db_url or len(db_url) < 10:
+            logger.error(f"DATABASE_URL is not set or invalid. Value: '{db_url}'")
+            logger.info(f"Available env vars: {list(os.environ.keys())}")
+            raise ValueError("DATABASE_URL environment variable must be set")
+
+        # Clean up URL if needed
+        db_url = db_url.strip()
+        if db_url.startswith("="):
+            db_url = db_url[1:]
+
+        logger.info(f"Creating database engine for: {db_url[:60]}...")
         _engine = create_async_engine(
-            settings.DATABASE_URL,
+            db_url,
             echo=settings.DATABASE_ECHO,
             future=True,
             pool_pre_ping=True,
