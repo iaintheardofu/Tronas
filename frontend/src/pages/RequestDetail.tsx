@@ -11,7 +11,6 @@ import {
   PlayIcon,
   UserIcon,
   EnvelopeIcon,
-  CalendarIcon,
   ClockIcon,
   DocumentTextIcon,
   FolderIcon,
@@ -19,7 +18,6 @@ import {
   ArrowPathIcon,
   CheckCircleIcon,
   ExclamationTriangleIcon,
-  PauseIcon,
   CloudArrowUpIcon,
   ChartBarIcon,
 } from '@heroicons/react/24/outline';

@@ -1,15 +1,20 @@
 import api from './api';
 
 export interface Document {
-  id: string;
-  request_id: string;
+  id: number;
+  request_id: number;
   filename: string;
-  file_path: string;
-  file_type: string;
+  original_path?: string;
+  storage_path?: string;
+  file_type?: string;
+  mime_type?: string;
   file_size: number;
-  classification: 'public' | 'confidential' | 'restricted' | 'unclassified';
-  redaction_required: boolean;
-  status: 'pending' | 'classified' | 'redacted' | 'approved' | 'released';
+  page_count: number;
+  classification: 'responsive' | 'non_responsive' | 'partially_responsive' | 'exempt' | 'unclassified';
+  classification_confidence?: number;
+  status: 'pending' | 'processing' | 'classified' | 'reviewed' | 'redacted' | 'approved' | 'released' | 'withheld';
+  needs_redaction: boolean;
+  is_duplicate: boolean;
   created_at: string;
   updated_at: string;
   metadata?: Record<string, any>;

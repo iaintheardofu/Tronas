@@ -50,7 +50,7 @@ export default function RequestCard({ request }: RequestCardProps) {
               {priority.label}
             </span>
           </div>
-          <DeadlineIndicator deadline={request.response_deadline || request.deadline} compact />
+          <DeadlineIndicator deadline={request.response_deadline} compact />
         </div>
 
         {/* Request Number & Title */}

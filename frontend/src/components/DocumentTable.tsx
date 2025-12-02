@@ -85,7 +85,7 @@ export default function DocumentTable({
             ) : (
               documents.map((doc) => {
                 const status = statusConfig[doc.status] || statusConfig.pending;
-                const iconColor = getFileIcon(doc.file_type);
+                const iconColor = getFileIcon(doc.file_type || 'unknown');
 
                 return (
                   <tr key={doc.id} className="hover:bg-navy-800/30 transition-colors">
@@ -122,7 +122,7 @@ export default function DocumentTable({
                       <div className="flex justify-end gap-1">
                         {doc.status === 'pending' && onClassify && (
                           <button
-                            onClick={() => onClassify(doc.id)}
+                            onClick={() => onClassify(String(doc.id))}
                             className="p-2 text-tronas-400 hover:text-tronas-300 hover:bg-tronas-500/20 rounded-lg transition-colors"
                             title="Classify with AI"
                           >
@@ -137,7 +137,7 @@ export default function DocumentTable({
                         </button>
                         {onDownload && (
                           <button
-                            onClick={() => onDownload(doc.id)}
+                            onClick={() => onDownload(String(doc.id))}
                             className="p-2 text-navy-400 hover:text-white hover:bg-navy-700 rounded-lg transition-colors"
                             title="Download"
                           >
@@ -146,7 +146,7 @@ export default function DocumentTable({
                         )}
                         {onDelete && (
                           <button
-                            onClick={() => onDelete(doc.id)}
+                            onClick={() => onDelete(String(doc.id))}
                             className="p-2 text-navy-400 hover:text-danger-400 hover:bg-danger-500/20 rounded-lg transition-colors"
                             title="Delete"
                           >

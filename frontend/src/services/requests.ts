@@ -1,27 +1,36 @@
 import api from './api';
 
 export interface PIARequest {
-  id: string;
+  id: number;
+  request_number: string;
   requester_name: string;
   requester_email: string;
-  request_subject: string;
-  request_details: string;
-  status: 'pending' | 'in_progress' | 'completed' | 'requires_review';
+  requester_phone?: string;
+  requester_organization?: string;
+  description: string;
+  status: 'new' | 'acknowledged' | 'in_progress' | 'pending_department_review' | 'pending_ag_ruling' | 'released' | 'closed_no_records' | 'withdrawn';
+  request_type: 'standard' | 'expedited' | 'recurring' | 'media' | 'legal';
   priority: 'low' | 'medium' | 'high' | 'urgent';
-  deadline: string;
+  date_received: string;
+  response_deadline: string;
+  extension_deadline?: string;
+  total_documents: number;
+  total_pages: number;
+  responsive_documents: number;
   created_at: string;
   updated_at: string;
-  assigned_to?: string;
-  estimated_completion?: string;
+  assigned_to?: number;
 }
 
 export interface CreateRequestData {
   requester_name: string;
   requester_email: string;
-  request_subject: string;
-  request_details: string;
+  requester_phone?: string;
+  requester_organization?: string;
+  description: string;
+  request_type?: string;
   priority?: string;
-  deadline?: string;
+  delivery_method?: string;
 }
 
 export const requestsService = {

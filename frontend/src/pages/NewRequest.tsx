@@ -6,7 +6,6 @@ import {
   UserIcon,
   EnvelopeIcon,
   DocumentTextIcon,
-  CalendarIcon,
   FlagIcon,
   SparklesIcon,
   CheckCircleIcon,

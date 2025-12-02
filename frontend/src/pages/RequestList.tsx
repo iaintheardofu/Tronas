@@ -4,7 +4,6 @@ import { useRequests } from '../hooks/useRequests';
 import RequestCard from '../components/RequestCard';
 import {
   PlusCircleIcon,
-  FunnelIcon,
   MagnifyingGlassIcon,
   ClipboardDocumentListIcon,
   SparklesIcon,
